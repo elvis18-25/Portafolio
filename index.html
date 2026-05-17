@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elvis Pérez | Desarrollador Web y Móvil</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --surface-color: #1a1d24;
+            --surface-hover: #22262f;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --accent-color: #cbd5e1;
+            --border-color: rgba(255,255,255,0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(15, 17, 21, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 6rem;
+            /* max-width: 800px; */
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 500;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            color: #f8fafc;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.8rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: #f8fafc;
+            color: #0f1115;
+        }
+
+        .btn-primary:hover {
+            background-color: #cbd5e1;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 500;
+            color: #f8fafc;
+        }
+
+        /* About Grid */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-tag {
+            padding: 0.6rem 1.2rem;
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background-color: var(--surface-hover);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 260px;
+            background-color: #22262f;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #f8fafc;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.8rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .tech-dot {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .tech-dot::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Scroll Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .typing-cursor::after {
+            content: '|';
+            font-weight: 300;
+            animation: blink 0.8s step-end infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        /* Modal Contacto */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2.5rem;
+            position: relative;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem; right: 1.5rem;
+            background: none; border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--text-primary);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: #f8fafc;
+            color: #0f1115;
+            border: none;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-submit:hover {
+            background: #cbd5e1;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .project-img { height: 200px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">Elvis Pérez</a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#experiencia">Experiencia</a></li>
+                <li><a href="#proyecto">Proyecto</a></li>
+                <li><a href="#" id="open-contact-modal" class="btn btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.85rem;">Contáctame</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="vanta-hero-bg" style="position: relative; overflow: hidden; width: 100%; min-height: 100vh; display: flex; flex-direction: column; border-bottom: 1px solid var(--border-color);">
+        <div class="container" style="position: relative; z-index: 1; display: flex; flex-direction: column; flex-grow: 1;">
+
+        <!-- Hero -->
+        <div class="hero" id="inicio" style="margin: auto 0;">
+            <h1 id="hero-title">Creando soluciones digitales modernas y funcionales.</h1>
+            <p id="hero-desc">Soy un desarrollador de software enfocado en construir aplicaciones web y móviles elegantes, con especial atención a la experiencia de usuario y al rendimiento del código.</p>
+            <a href="#proyecto" id="hero-btn" class="btn btn-primary" style="opacity: 0; transition: opacity 1s ease;">
+                Ver proyectos <i class="ph ph-arrow-right"></i>
+            </a>
+        </div>
+        </div> <!-- Fin de hero container -->
+    </div> <!-- Fin de vanta-hero-bg -->
+
+    <div class="container">
+        <!-- About & Skills -->
+        <section id="sobre-mi" class="reveal">
+            <div class="about-grid">
+                <div>
+                    <div class="section-header">
+                        <h2>Sobre Mí</h2>
+                    </div>
+                    <div class="about-text">
+                        <p>Me apasiona transformar ideas en productos digitales reales. Con experiencia tanto en el desarrollo del lado del servidor (backend) como en la creación de interfaces interactivas (frontend).</p>
+                        <p>Mi enfoque de diseño se basa en la simplicidad y el minimalismo, evitando distracciones innecesarias y utilizando colores oscuros y elegantes para destacar lo que realmente importa: el contenido y la funcionalidad.</p>
+                        <p>Tengo la capacidad de adaptarme a diferentes tecnologías para entregar soluciones robustas, ya sea en plataformas web tradicionales, aplicaciones dinámicas o aplicaciones móviles para teléfonos.</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="section-header">
+                        <h2>Tecnologías</h2>
+                    </div>
+                    <p class="about-text" style="margin-bottom: 1.5rem;">Herramientas y lenguajes que utilizo habitualmente en mi flujo de trabajo:</p>
+                    
+                    <div class="skills-container">
+                        <!-- Backend & Frameworks -->
+                        <div class="skill-tag"><i class="ph ph-file-code"></i> PHP</div>
+                        <div class="skill-tag"><i class="ph ph-hexagon"></i> Laravel</div>
+                        <div class="skill-tag"><i class="ph ph-hexagon"></i> Node.js</div>
+                        <div class="skill-tag"><i class="ph ph-wordpress"></i> WordPress</div>
+                        <div class="skill-tag"><i class="ph ph-database"></i> MySQL</div>
+                        <div class="skill-tag"><i class="ph ph-github-logo"></i> Git</div>
+                        <div class="skill-tag"><i class="ph ph-folder"></i> Mirro Desing</div>
+                        
+                        <!-- Frontend -->
+                        <div class="skill-tag"><i class="ph ph-file-js"></i> JavaScript</div>
+                        <div class="skill-tag"><i class="ph ph-brackets-curly"></i> jQuery</div>
+                        <div class="skill-tag"><i class="ph ph-file-css"></i> CSS</div>
+                        <div class="skill-tag"><i class="ph ph-paint-brush"></i> Bootstrap</div>
+                        
+                        <!-- Mobile -->
+                        <div class="skill-tag"><i class="ph ph-device-mobile"></i> Dart (Móvil)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio -->
+        <section id="portafolio" class="reveal">
+            <div class="section-header">
+                <h2>Proyectos Destacados</h2>
+            </div>
+            
+            <div class="portfolio-grid">
+                <!-- Project 1 -->
+                <a href="https://rhexperto.com/Landing/index.html" target="_blank" class="project-card">
+                    <img src="assets/img/rh.png" alt="Dashboard Web" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">Sistema de Gestión RH</h3>
+                        <p class="project-desc">Una plataforma web robusta para la gestión de recursos humanos y analíticas avanzadas. Interfaz oscura y elegante para largas sesiones de trabajo.</p>
+                        <div class="project-tech">
+                            <span class="tech-dot">Laravel</span>
+                            <span class="tech-dot">PHP</span>
+                            <span class="tech-dot">Bootstrap</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Project 2 -->
+                <a href="https://clipdigital.io/" target="_blank" class="project-card">
+                    <img src="assets/img/digital.png" alt="Aplicación Móvil" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">ClipDigital</h3>
+                        <p class="project-desc">Una página web diseñada en wordpress para la empresa ClipDigital, optimizada para dispositivos móviles.</p>
+                        <div class="project-tech">
+                            <span class="tech-dot">Wordpress</span>
+                            <span class="tech-dot">Elementor</span>
+                            <span class="tech-dot">JS</span>
+                        </div>
+                    </div>
+                </a>
+                
+                <!-- Project 3 -->
+                <a href="https://thegracesupply.com/" target="_blank" class="project-card">
+                    <img src="assets/img/gracee.png" alt="Sitio Corporativo" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">The Grace Supply</h3>
+                        <p class="project-desc">Una página web diseñada en wordpress para la empresa The Grace Supply, optimizada para dispositivos móviles.</p>
+                        <div class="project-tech">
+                            <span class="tech-dot">Wordpress</span>
+                            <span class="tech-dot">Elementor</span>
+                            <span class="tech-dot">JS</span>
+                        </div>
+                    </div>
+                </a>
+                <!-- Project 4 -->
+                <a href="https://efectivo.com.do/" target="_blank" class="project-card">
+                    <img src="assets/img/efectivo.png" alt="Efec" class="project-img">
+                    <div class="project-info">
+                        <h3 class="project-title">Efectivo</h3>
+                        <p class="project-desc">Una plataforma web de Sistema de Ventas y facturacion en tiempo real, optimizado para dispositivos móviles.</p>
+                        <div class="project-tech">
+                            <span class="tech-dot">Laravel</span>
+                            <span class="tech-dot">Bootstrap</span>
+                            <span class="tech-dot">Js</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.instagram.com/elvis.perez0/"><i class="ph ph-instagram-logo"></i></a>
+                <a href="https://www.linkedin.com/in/elvis-rafael-173a09331/"><i class="ph ph-linkedin-logo"></i></a>
+                <a href="#"><i class="ph ph-envelope-simple"></i></a>
+            </div>
+            <p>&copy; 2026. Diseñado y desarrollado con elegancia.</p>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div class="modal-overlay" id="contact-modal">
+        <div class="modal-content">
+            <button class="close-modal" id="close-contact-modal"><i class="ph ph-x"></i></button>
+            <h2 style="color: #f8fafc; margin-bottom: 1.5rem; font-weight: 500;">Contáctame</h2>
+            <!-- Usando Web3Forms como alternativa más estable -->
+            <form action="https://api.web3forms.com/submit" method="POST" id="contact-form">
+                <!-- IMPORTANTE: Pon aquí el Access Key que te envíe Web3Forms a tu correo -->
+                <input type="hidden" name="access_key" value="TU_ACCESS_KEY_AQUI">
+                <input type="hidden" name="subject" value="Nuevo mensaje desde tu portafolio">
+                
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" class="form-control" required placeholder="Tu nombre">
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" class="form-control" required placeholder="tu@correo.com">
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" name="message" class="form-control" required placeholder="Escribe tu mensaje aquí..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Enviar Mensaje <i class="ph ph-paper-plane-right"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Simple interaction script -->
+    <script>
+        // Modal Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('contact-modal');
+            const openModalBtn = document.getElementById('open-contact-modal');
+            const closeModalBtn = document.getElementById('close-contact-modal');
+
+            if(openModalBtn && modal && closeModalBtn) {
+                openModalBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    modal.classList.add('active');
+                });
+
+                closeModalBtn.addEventListener('click', () => {
+                    modal.classList.remove('active');
+                });
+
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove('active');
+                    }
+                });
+            }
+        });
+        // Add subtle reveal animations on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            // Typing effect for Hero
+            const titleEl = document.getElementById('hero-title');
+            const descEl = document.getElementById('hero-desc');
+            const btnEl = document.getElementById('hero-btn');
+            
+            if (titleEl && descEl && btnEl) {
+                // Lock heights to prevent layout shift when text is cleared
+                titleEl.style.minHeight = titleEl.offsetHeight + 'px';
+                descEl.style.minHeight = descEl.offsetHeight + 'px';
+
+                const titleText = titleEl.innerText;
+                const descText = descEl.innerText;
+                
+                titleEl.innerText = '';
+                descEl.innerText = '';
+                
+                function typeText(element, text, speed, callback) {
+                    element.classList.add('typing-cursor');
+                    let i = 0;
+                    function type() {
+                        if (i < text.length) {
+                            element.innerHTML += text.charAt(i);
+                            i++;
+                            setTimeout(type, speed);
+                        } else {
+                            element.classList.remove('typing-cursor');
+                            if (callback) callback();
+                        }
+                    }
+                    setTimeout(type, 500); // initial delay
+                }
+                
+                typeText(titleEl, titleText, 50, () => {
+                    typeText(descEl, descText, 25, () => {
+                        btnEl.style.opacity = '1';
+                    });
+                });
+            }
+
+            const reveals = document.querySelectorAll('.reveal, .project-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if(entry.target.classList.contains('project-card')){
+                             entry.target.style.opacity = '1';
+                             entry.target.style.transform = 'translateY(0)';
+                        } else {
+                             entry.target.classList.add('active');
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            reveals.forEach((el, index) => {
+                if(el.classList.contains('project-card')){
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = `all 0.5s ease ${index * 0.1}s`;
+                }
+                observer.observe(el);
+            });
+        });
+    </script>
+
+    <!-- Three.js & Vanta.js for 3D Hero Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script>
+        VANTA.NET({
+            el: "#vanta-hero-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x5a6372,
+            backgroundColor: 0x0f1115,
+            points: 15.00,
+            maxDistance: 22.00,
+            spacing: 16.00
+        });
+    </script>
+</body>
+</html>
